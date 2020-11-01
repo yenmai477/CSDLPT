@@ -31,9 +31,10 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON schema.books TO books_admin;
 
 
 -- GRANT PRIVILEGE FOR NEW USER
-GRANT CONNECT, RESOURCE, OEM_MONITOR TO dhqg;
+GRANT CONNECT, RESOURCE TO dhqg;
 GRANT UNLIMITED TABLESPACE TO dhqg;
 
+--OEM_MONITOR
 
 -- GRANT QUYỀN TẠO DATABASE LINK PUBLIC
 GRANT CREATE PUBLIC DATABASE LINK to dhqg;
@@ -42,14 +43,36 @@ GRANT CREATE PUBLIC DATABASE LINK to dhqg;
 
 
 --  Trỏ IP trong file host
+192.168.x.x mayA
+192.168.x.y mayB
+
+
+
+
 --- Sửa file config
---- Restart services
+--Listener
+-- đổi localhost thành mayB và đổi vị trí dòng này lên trên
+
+-- tnsname
+-- copy orcl đổi tên nó thành tên khác và đổi localhost thành máyB
+
+--  sqlnet
+--  đổi authen về NONE
+
+
+
+
+--- Restart services (TNS listener và ORCL)
 -- Run cmd admin
-lsnrctl stop
+lsnrctl status
+stop
 reload
 service
 
--- tnsping mayB
+-- tnsping mayB (chạy lệnh này)
 -- test connect bằng net manager và connect bằng tài khoản máy B
 -- dùng sqlplus login vào bằng tài khoản máy A và tạo database link
 create public database link dhcntt connect to dhqg IDENTIFIED by dhqg using 'DHCNTT';
+
+
+select * from dhcntt.hocphi@dhcntt;

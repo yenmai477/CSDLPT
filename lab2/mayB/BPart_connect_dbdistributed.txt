@@ -1,0 +1,27 @@
+How to connect B Database distributed
+---------------------
+system/Oracle123456
+---------------------
+- Write script
+- Run script
+- Config host file
+- Config listener.ore file
+- Config sqlnet.ore
+- Restart OracleServiceORCL
+- Restart Oracle listener service
+- Run cmd as administrator
+ * lsnrctl status
+ * lsnrctl service
+
+https://chartio.com/resources/tutorials/how-to-create-a-user-and-grant-permissions-in-oracle/
+
+----
+GRANT
+  SELECT,
+  INSERT,
+  UPDATE,
+  DELETE
+ON
+  schema.books
+TO
+  books_admin;

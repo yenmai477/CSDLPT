@@ -1,0 +1,85 @@
+drop user dhqg;
+
+
+create user dhqg identified by dhqg;
+grant connect, resource, oem_monitor to dhqg;
+grant unlimited tablespace to dhqg;
+
+create user sv identified by sv;
+grant connect, resource, oem_monitor to sv;
+grant unlimited tablespace to sv;
+
+create user dhcntt identified by dhcntt;
+grant connect, resource, oem_monitor to dhcntt;
+grant unlimited tablespace to dhcntt;
+
+-------------
+* have to commit;
+* grant privi.. for dhqg
+grant select any table to dhqg (grant tai system account)
+*create database in dncntt account
+
+
+create table SINHVIEN (
+  Masv varchar(8),
+  MaKhoa varchar(10),
+  HoTen varchar(25),
+  NgaySinh date,
+  GioiTinh varchar(5));
+
+
+
+create table KHOA (
+  MaKhoa varchar(10),
+  MaTruong varchar(10));
+
+
+
+create table HOCPHI (
+  Masv varchar(8),
+  HocKi number(1),
+  SoTien number);
+alter table SINHVIEN add constraint pk_masv primary  key(Masv);
+
+
+
+
+alter table KHOA add constraint pk_makhoa primary key(MaKhoa);
+
+
+
+alter table SINHVIEN add constraint fk_makhoa foreign key(MaKhoa) references KHOA(MaKhoa);
+
+
+
+alter table HOCPHI add constraint pk_msvv primary key (Masv);
+
+
+
+alter table HOCPHI add constraint fk_masv foreign key (Masv) references SINHVIEN(Masv);
+
+
+
+alter session set nls_date_format='DD/MM/RR';
+
+
+
+
+ INSERT INTO KHOA VALUES ('HTTT','CNTTT');
+ INSERT INTO KHOA VALUES ('KHMT','CNTTT');
+ INSERT INTO KHOA VALUES ('KTMT','CNTTT');
+ INSERT INTO KHOA VALUES ('MMT','CNTTT');
+ INSERT INTO KHOA VALUES ('CNPM','CNTTT');
+ INSERT INTO KHOA VALUES ('KHKT','CNTTT');
+ INSERT INTO SINHVIEN VALUES ('06520224','HTTT','Cao Dang Khoa','05/08/1988','1');
+ INSERT INTO SINHVIEN VALUES ('06520225','HTTT','Le Hoang Long','04/12/1988','1');
+ INSERT INTO SINHVIEN VALUES ('06520226','HTTT','Nguyen Tien Long','01/04/1988','1');
+ INSERT INTO SINHVIEN VALUES ('06520227','HTTT','Do Van Man','02/08/1988','1');
+ INSERT INTO SINHVIEN VALUES ('06520228','HTTT','Le Thi Thuye','12/03/1988','0');
+ Insert into HOCPHI VALUES ('06520224',1,12600000);
+ Insert into HOCPHI VALUES ('06520225',1,12600000);
+ Insert into HOCPHI VALUES ('06520226',1,12600000);
+ Insert into HOCPHI VALUES ('06520227',1,12600000);
+ Insert into HOCPHI VALUES ('06520228',1,12600000);
+
+
